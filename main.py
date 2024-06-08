@@ -20,6 +20,7 @@ def main():
     save_steps=0,
     logging_steps=500,
     learning_rate=1e-4,
+    push_to_hub_model_id = "omaratef3221/Qwen2-1.5B-Instruct-SQL-generator"
     )
     
     response_template = " ### The response query is:"
