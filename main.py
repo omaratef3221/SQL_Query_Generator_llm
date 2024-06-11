@@ -13,10 +13,9 @@ def main(args):
     
     training_params = TrainingArguments(
     output_dir="./model",
-    save_strategy="no",
+    save_strategy="steps",
     num_train_epochs=args.epochs,
     per_device_train_batch_size=args.batch_size,
-    optim="paged_adamw_32bit",
     save_steps=1,
     logging_steps=500,
     learning_rate=1e-4,
