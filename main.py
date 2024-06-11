@@ -17,10 +17,11 @@ def main(args):
     num_train_epochs=args.epochs,
     per_device_train_batch_size=args.batch_size,
     optim="paged_adamw_32bit",
-    save_steps=0,
+    save_steps=1,
     logging_steps=500,
     learning_rate=1e-4,
     push_to_hub = True,
+    hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator"
     push_to_hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator"
     )
     
