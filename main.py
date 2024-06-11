@@ -21,7 +21,7 @@ def main(args):
     logging_steps=500,
     learning_rate=1e-4,
     push_to_hub = True,
-    hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator"
+    hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator",
     push_to_hub_model_id = f"{args.model_id.split('/')[1]}-SQL-generator"
     )
     
