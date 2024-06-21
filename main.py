@@ -6,6 +6,8 @@ from trl import SFTTrainer, DataCollatorForCompletionOnlyLM
 from transformers import TrainingArguments
 from get_model import get_qwen_model
 from data import get_dataset, prepare_data
+from huggingface_hub import login
+
 
 def main(args):
     tokenizer, model = get_qwen_model(model_id = args.model_id)
@@ -41,11 +43,16 @@ def main(args):
     trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-SQL-generator")
     
 if __name__ == "__main__":
-    # model_id, dataset_id, epochs, batch_size, push_to_hub_model_id
+    # model_id, dataset_id, epochs, batch_size
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_id', type=str, default='Qwen/Qwen2-0.5B-Instruct')
     parser.add_argument('--dataset_id', type=str, default='motherduckdb/duckdb-text2sql-25k')
     parser.add_argument('--epochs', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--hf_login', type=bool, default=True)
     args = parser.parse_args()
+    if args.hf_login:
+        login()
+    else:
+        pass
     main(args)

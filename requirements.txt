@@ -1,0 +1,7 @@
+torch
+torchaudio
+torchvision
+transformers==4.39.0
+datasets
+trl
+huggingface_hub
