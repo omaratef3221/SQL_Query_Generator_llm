@@ -7,7 +7,7 @@ from transformers import TrainingArguments
 from get_model import get_qwen_model
 from data import get_dataset, prepare_data
 from huggingface_hub import login
-
+import requests
 
 def main(args):
     tokenizer, model = get_qwen_model(model_id = args.model_id)
@@ -41,6 +41,8 @@ def main(args):
     trainer.save_tokenzer(f"./{args.model_id.split('/')[1]}")
     
     trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-SQL-generator")
+    requests.post("https://ntfy.sh/sql_query_generator_llm", data="Model Trained Uploaded to HuggingFace ".encode(encoding='utf-8'))
+
     
 if __name__ == "__main__":
     # model_id, dataset_id, epochs, batch_size
