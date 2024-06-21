@@ -40,6 +40,7 @@ def main(args):
     trainer.save_model(f"./{args.model_id.split('/')[1]}")
     
     trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-SQL-generator")
+    
     requests.post("https://ntfy.sh/sql_query_generator_llm", data="Model Trained Uploaded to HuggingFace ".encode(encoding='utf-8'))
 
     
