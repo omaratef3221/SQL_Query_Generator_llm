@@ -1,6 +1,7 @@
 from datasets import load_dataset
 
-
+import os
+os.environ["CURL_CA_BUNDLE"] = ""
 
 def get_dataset(dataset_id = "motherduckdb/duckdb-text2sql-25k", split = "train[:10000]"):
     dataset = load_dataset(dataset_id, split=split)
