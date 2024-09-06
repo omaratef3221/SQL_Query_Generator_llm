@@ -8,6 +8,7 @@ from get_model import get_qwen_model
 from data import get_dataset, prepare_data
 from huggingface_hub import login
 import requests
+import time
 
 def main(args):
     tokenizer, model = get_qwen_model(model_id = args.model_id)
@@ -28,15 +29,16 @@ def main(args):
     
     response_template = " ### The response query is:"
     collator = DataCollatorForCompletionOnlyLM(response_template, tokenizer=tokenizer)
-
+    
     trainer = SFTTrainer(
     model,
     train_dataset=data,
     formatting_func=prepare_data,
     data_collator=collator,
     )
-    
+    t1 = time.time()
     trainer.train()
+    print("TIME TAKEN: ", time.time() - t1)
     trainer.save_model(f"./{args.model_id.split('/')[1]}")
     
     trainer.push_to_hub(f"omaratef3221/{args.model_id.split('/')[1]}-SQL-generator")
