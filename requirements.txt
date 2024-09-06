@@ -1,7 +1,7 @@
-torch
-torchaudio
-torchvision
-transformers==4.39.0
-datasets
-trl
-huggingface_hub
+torch==2.3.1
+torchaudio==2.3.1
+torchvision==0.18.1
+transformers==4.37.2
+datasets==2.17.0
+trl==0.9.4
+huggingface_hub==0.24.5
