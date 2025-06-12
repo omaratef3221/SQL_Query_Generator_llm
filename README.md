@@ -60,10 +60,10 @@ Evaluation metrics such as accuracy, precision, recall, and F1-score were used t
 To use this model, load it from the Hugging Face Model Hub and provide natural language text prompts. The model will generate the corresponding SQL queries.
 
 ```python
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("omaratef3221/Qwen2-0.5B-Instruct-SQL-query-generator")
-model = AutoModelForSeq2SeqLM.from_pretrained("omaratef3221/Qwen2-0.5B-Instruct-SQL-query-generator")
+model = AutoModelForCausalLM.from_pretrained("omaratef3221/Qwen2-0.5B-Instruct-SQL-query-generator")
 
 inputs = tokenizer("Show me all employees with a salary greater than $100,000", return_tensors="pt")
 outputs = model.generate(**inputs)
